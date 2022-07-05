@@ -25,7 +25,7 @@ class CupertinoVideoProgressBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return VideoProgressBar(
       controller,
-      barHeight: 5,
+      barHeight: 2,
       handleHeight: 6,
       drawShadow: true,
       colors: colors,

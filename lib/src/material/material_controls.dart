@@ -90,19 +90,19 @@ class _MaterialControlsState extends State<MaterialControls>
                 )
               else
                 _buildHitArea(),
-              _buildActionBar(),
+              // _buildActionBar(),
               Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+                // mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
-                  if (_subtitleOn)
-                    Transform.translate(
-                      offset: Offset(
-                        0.0,
-                        notifier.hideStuff ? barHeight * 0.8 : 0.0,
-                      ),
-                      child:
-                          _buildSubtitles(context, chewieController.subtitle!),
-                    ),
+                  // if (_subtitleOn)
+                  //   Transform.translate(
+                  //     offset: Offset(
+                  //       0.0,
+                  //       notifier.hideStuff ? barHeight * 0.8 : 0.0,
+                  //     ),
+                  //     child:
+                  //         _buildSubtitles(context, chewieController.subtitle!),
+                  //   ),
                   _buildBottomBar(context),
                 ],
               ),
@@ -257,44 +257,41 @@ class _MaterialControlsState extends State<MaterialControls>
       child: Container(
         height: barHeight + (chewieController.isFullScreen ? 10.0 : 0),
         padding: EdgeInsets.only(
-          left: 20,
+          // left: 20,
           bottom: !chewieController.isFullScreen ? 10.0 : 0,
         ),
         child: SafeArea(
           bottom: chewieController.isFullScreen,
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Flexible(
+              // Flexible(
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: <Widget>[
+              //       if (chewieController.isLive)
+              //         const Expanded(child: Text('LIVE'))
+              //       else
+              //         _buildPosition(iconColor),
+              //       if (chewieController.allowMuting)
+              //         _buildMuteButton(controller),
+              //       const Spacer(),
+              //       if (chewieController.allowFullScreen) _buildExpandButton(),
+              //     ],
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: chewieController.isFullScreen ? 15.0 : 0,
+              // ),
+              // if (!chewieController.isLive)
+              Expanded(
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    if (chewieController.isLive)
-                      const Expanded(child: Text('LIVE'))
-                    else
-                      _buildPosition(iconColor),
-                    if (chewieController.allowMuting)
-                      _buildMuteButton(controller),
-                    const Spacer(),
-                    if (chewieController.allowFullScreen) _buildExpandButton(),
+                  children: [
+                    _buildProgressBar(),
                   ],
                 ),
               ),
-              SizedBox(
-                height: chewieController.isFullScreen ? 15.0 : 0,
-              ),
-              if (!chewieController.isLive)
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.only(right: 20),
-                    child: Row(
-                      children: [
-                        _buildProgressBar(),
-                      ],
-                    ),
-                  ),
-                ),
             ],
           ),
         ),
@@ -604,7 +601,7 @@ class _MaterialControlsState extends State<MaterialControls>
         },
         colors: chewieController.materialProgressColors ??
             ChewieProgressColors(
-              playedColor: Theme.of(context).colorScheme.secondary,
+              // playedColor: Theme.of(context).colorScheme.secondary,
               handleColor: Theme.of(context).colorScheme.secondary,
               bufferedColor: Theme.of(context).backgroundColor.withOpacity(0.5),
               backgroundColor: Theme.of(context).disabledColor.withOpacity(.5),

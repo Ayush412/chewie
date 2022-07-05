@@ -251,8 +251,8 @@ class _CupertinoControlsState extends State<CupertinoControls>
         duration: const Duration(milliseconds: 300),
         child: Container(
           color: Colors.transparent,
-          alignment: Alignment.bottomCenter,
-          margin: EdgeInsets.all(marginSize),
+          alignment: Alignment.topCenter,
+          // margin: EdgeInsets.all(marginSize),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10.0),
             child: BackdropFilter(
@@ -273,19 +273,19 @@ class _CupertinoControlsState extends State<CupertinoControls>
                       )
                     : Row(
                         children: <Widget>[
-                          _buildSkipBack(iconColor, barHeight),
-                          _buildPlayPause(controller, iconColor, barHeight),
-                          _buildSkipForward(iconColor, barHeight),
-                          _buildPosition(iconColor),
+                          // _buildSkipBack(iconColor, barHeight),
+                          // _buildPlayPause(controller, iconColor, barHeight),
+                          // _buildSkipForward(iconColor, barHeight),
+                          // _buildPosition(iconColor),
                           _buildProgressBar(),
-                          _buildRemaining(iconColor),
-                          _buildSubtitleToggle(iconColor, barHeight),
-                          if (chewieController.allowPlaybackSpeedChanging)
-                            _buildSpeedButton(controller, iconColor, barHeight),
-                          if (chewieController.additionalOptions != null &&
-                              chewieController
-                                  .additionalOptions!(context).isNotEmpty)
-                            _buildOptionsButton(iconColor, barHeight),
+                          // _buildRemaining(iconColor),
+                          // _buildSubtitleToggle(iconColor, barHeight),
+                          // if (chewieController.allowPlaybackSpeedChanging)
+                          //   _buildSpeedButton(controller, iconColor, barHeight),
+                          // if (chewieController.additionalOptions != null &&
+                          //     chewieController
+                          //         .additionalOptions!(context).isNotEmpty)
+                          //   _buildOptionsButton(iconColor, barHeight),
                         ],
                       ),
               ),
@@ -669,52 +669,49 @@ class _CupertinoControlsState extends State<CupertinoControls>
 
   Widget _buildProgressBar() {
     return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.only(right: 12.0),
-        child: CupertinoVideoProgressBar(
-          controller,
-          onDragStart: () {
-            setState(() {
-              _dragging = true;
-            });
+      child: CupertinoVideoProgressBar(
+        controller,
+        onDragStart: () {
+          setState(() {
+            _dragging = true;
+          });
 
-            _hideTimer?.cancel();
-          },
-          onDragEnd: () {
-            setState(() {
-              _dragging = false;
-            });
+          _hideTimer?.cancel();
+        },
+        onDragEnd: () {
+          setState(() {
+            _dragging = false;
+          });
 
-            _startHideTimer();
-          },
-          colors: chewieController.cupertinoProgressColors ??
-              ChewieProgressColors(
-                playedColor: const Color.fromARGB(
-                  120,
-                  255,
-                  255,
-                  255,
-                ),
-                handleColor: const Color.fromARGB(
-                  255,
-                  255,
-                  255,
-                  255,
-                ),
-                bufferedColor: const Color.fromARGB(
-                  60,
-                  255,
-                  255,
-                  255,
-                ),
-                backgroundColor: const Color.fromARGB(
-                  20,
-                  255,
-                  255,
-                  255,
-                ),
+          _startHideTimer();
+        },
+        colors: chewieController.cupertinoProgressColors ??
+            ChewieProgressColors(
+              // playedColor: const Color.fromARGB(
+              //   120,
+              //   255,
+              //   255,
+              //   255,
+              // ),
+              handleColor: const Color.fromARGB(
+                255,
+                255,
+                255,
+                255,
               ),
-        ),
+              bufferedColor: const Color.fromARGB(
+                60,
+                255,
+                255,
+                255,
+              ),
+              backgroundColor: const Color.fromARGB(
+                20,
+                255,
+                255,
+                255,
+              ),
+            ),
       ),
     );
   }

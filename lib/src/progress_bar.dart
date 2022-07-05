@@ -68,46 +68,46 @@ class _VideoProgressBarState extends State<VideoProgressBar> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onHorizontalDragStart: (DragStartDetails details) {
-        if (!controller.value.isInitialized) {
-          return;
-        }
-        _controllerWasPlaying = controller.value.isPlaying;
-        if (_controllerWasPlaying) {
-          controller.pause();
-        }
+      // onHorizontalDragStart: (DragStartDetails details) {
+      //   if (!controller.value.isInitialized) {
+      //     return;
+      //   }
+      //   _controllerWasPlaying = controller.value.isPlaying;
+      //   if (_controllerWasPlaying) {
+      //     controller.pause();
+      //   }
 
-        widget.onDragStart?.call();
-      },
-      onHorizontalDragUpdate: (DragUpdateDetails details) {
-        if (!controller.value.isInitialized) {
-          return;
-        }
-        // Should only seek if it's not running on Android, or if it is,
-        // then the VideoPlayerController cannot be buffering.
-        // On Android, we need to let the player buffer when scrolling
-        // in order to let the player buffer. https://github.com/flutter/flutter/issues/101409
-        final shouldSeekToRelativePosition =
-            !Platform.isAndroid || !controller.value.isBuffering;
-        if (shouldSeekToRelativePosition) {
-          _seekToRelativePosition(details.globalPosition);
-        }
+      //   widget.onDragStart?.call();
+      // },
+      // onHorizontalDragUpdate: (DragUpdateDetails details) {
+      //   if (!controller.value.isInitialized) {
+      //     return;
+      //   }
+      //   // Should only seek if it's not running on Android, or if it is,
+      //   // then the VideoPlayerController cannot be buffering.
+      //   // On Android, we need to let the player buffer when scrolling
+      //   // in order to let the player buffer. https://github.com/flutter/flutter/issues/101409
+      //   final shouldSeekToRelativePosition =
+      //       !Platform.isAndroid || !controller.value.isBuffering;
+      //   if (shouldSeekToRelativePosition) {
+      //     _seekToRelativePosition(details.globalPosition);
+      //   }
 
-        widget.onDragUpdate?.call();
-      },
-      onHorizontalDragEnd: (DragEndDetails details) {
-        if (_controllerWasPlaying) {
-          controller.play();
-        }
+      //   widget.onDragUpdate?.call();
+      // },
+      // onHorizontalDragEnd: (DragEndDetails details) {
+      //   if (_controllerWasPlaying) {
+      //     controller.play();
+      //   }
 
-        widget.onDragEnd?.call();
-      },
-      onTapDown: (TapDownDetails details) {
-        if (!controller.value.isInitialized) {
-          return;
-        }
-        _seekToRelativePosition(details.globalPosition);
-      },
+      //   widget.onDragEnd?.call();
+      // },
+      // onTapDown: (TapDownDetails details) {
+      //   if (!controller.value.isInitialized) {
+      //     return;
+      //   }
+      //   _seekToRelativePosition(details.globalPosition);
+      // },
       child: Center(
         child: Container(
           height: MediaQuery.of(context).size.height,
@@ -151,7 +151,7 @@ class _ProgressBarPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final baseOffset = size.height / 2 - barHeight / 2;
+    const baseOffset = 0.0; //size.height / 2 - barHeight / 2;
 
     canvas.drawRRect(
       RRect.fromRectAndRadius(
@@ -195,22 +195,22 @@ class _ProgressBarPainter extends CustomPainter {
       colors.playedPaint,
     );
 
-    if (drawShadow) {
-      final Path shadowPath = Path()
-        ..addOval(
-          Rect.fromCircle(
-            center: Offset(playedPart, baseOffset + barHeight / 2),
-            radius: handleHeight,
-          ),
-        );
+    // if (drawShadow) {
+    //   final Path shadowPath = Path()
+    //     ..addOval(
+    //       Rect.fromCircle(
+    //         center: Offset(playedPart, baseOffset + barHeight / 2),
+    //         radius: handleHeight,
+    //       ),
+    //     );
 
-      canvas.drawShadow(shadowPath, Colors.black, 0.2, false);
-    }
+    //   canvas.drawShadow(shadowPath, Colors.black, 0.2, false);
+    // }
 
-    canvas.drawCircle(
-      Offset(playedPart, baseOffset + barHeight / 2),
-      handleHeight,
-      colors.handlePaint,
-    );
+    // canvas.drawCircle(
+    //   Offset(playedPart, baseOffset + barHeight / 2),
+    //   handleHeight,
+    //   colors.handlePaint,
+    // );
   }
 }
